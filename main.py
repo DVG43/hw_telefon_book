@@ -1,6 +1,6 @@
 from pprint import pprint
 import csv
-
+from data_processing import devision_name
 # Ваша задача: починить адресную книгу, используя регулярные выражения.
 # Структура данных будет всегда:
 # lastname,firstname,surname,organization,position,phone,email
@@ -23,11 +23,16 @@ if __name__ == '__main__':
 
 # TODO 1: выполните пункты 1-3 ДЗ
 #   ваш код
-    new_contakt_list =[]
-    for strings_tabl in contacts_list:
-        new_strings_tabl = '*'.join(strings_tabl)
-        new_contakt_list.append(new_strings_tabl)
-    pprint(new_contakt_list)
+#     new_contakt_list =[]
+#     for strings_tabl in contacts_list:
+#         new_strings_tabl = '*'.join(strings_tabl)
+#         new_contakt_list.append(new_strings_tabl)
+#     pprint(new_contakt_list)
+
+for meber in contacts_list:
+    devision_name(meber)
+
+print(contacts_list)
 
 # TODO 2: сохраните получившиеся данные в другой файл
 # код для записи файла в формате CSV
