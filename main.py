@@ -17,7 +17,7 @@ if __name__ == '__main__':
     with open("phonebook_raw.csv",encoding='UTF-8') as f:
         rows = csv.reader(f, delimiter=",")
         contacts_list = list(rows)
-    pprint(contacts_list)
+    #pprint(contacts_list)
     # contacts_list.remove('')
     # pprint(contacts_list)
 
@@ -32,7 +32,7 @@ if __name__ == '__main__':
 for meber in contacts_list:
     devision_name(meber)
 
-print(contacts_list)
+pprint(contacts_list)
 
 # TODO 2: сохраните получившиеся данные в другой файл
 # код для записи файла в формате CSV
