@@ -1,6 +1,8 @@
 from pprint import pprint
 import csv
 from data_processing import devision_name
+from data_processing import compere_list
+from data_processing import compere_list_2
 # Ваша задача: починить адресную книгу, используя регулярные выражения.
 # Структура данных будет всегда:
 # lastname,firstname,surname,organization,position,phone,email
@@ -29,10 +31,20 @@ if __name__ == '__main__':
 #         new_contakt_list.append(new_strings_tabl)
 #     pprint(new_contakt_list)
 
-for meber in contacts_list:
-    devision_name(meber)
+    for meber in contacts_list:
+        devision_name(meber)      #разделяем фио на составные.
+    #pprint(contacts_list)
+    #pprint(compere_list(contacts_list))
 
-pprint(contacts_list)
+    len_contact_list = len(contacts_list)    #определяем длинну телефонной книги
+    for element_contacts_list in contacts_list:
+        position = 1
+        while position < len_contact_list:
+            contacts_list[position-1] = compere_list_2(element_contacts_list,contacts_list[position])
+            position += 1
+
+    pprint(contacts_list)
+
 
 # TODO 2: сохраните получившиеся данные в другой файл
 # код для записи файла в формате CSV
