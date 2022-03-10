@@ -1,8 +1,9 @@
 from pprint import pprint
 import csv
 from data_processing import devision_name
-from data_processing import compere_list
+from data_processing import change_telefon_namber
 from data_processing import compere_list_2
+
 # Ваша задача: починить адресную книгу, используя регулярные выражения.
 # Структура данных будет всегда:
 # lastname,firstname,surname,organization,position,phone,email
@@ -14,36 +15,43 @@ from data_processing import compere_list_2
 # объединить все дублирующиеся записи о человеке в одну
 
 
+def remove_double (contacts_list):
+    len_contact_list = len(contacts_list)  # определяем длинну телефонной книги
+    new_contact_list = []
+    for element_contacts_list in contacts_list:
+        position = 1
+
+        while position < len_contact_list:
+            any_element = compere_list_2(element_contacts_list, contacts_list[position])
+            position += 1
+            print(any_element)
+        if any_element == 'no':
+            new_contact_list.append(element_contacts_list)
+        else:
+            if any_element in new_contact_list:
+                pass
+            else:
+                new_contact_list.append(any_element)
+    return new_contact_list
+
 
 if __name__ == '__main__':
     with open("phonebook_raw.csv",encoding='UTF-8') as f:
         rows = csv.reader(f, delimiter=",")
         contacts_list = list(rows)
-    #pprint(contacts_list)
-    # contacts_list.remove('')
-    # pprint(contacts_list)
-
-# TODO 1: выполните пункты 1-3 ДЗ
-#   ваш код
-#     new_contakt_list =[]
-#     for strings_tabl in contacts_list:
-#         new_strings_tabl = '*'.join(strings_tabl)
-#         new_contakt_list.append(new_strings_tabl)
-#     pprint(new_contakt_list)
 
     for meber in contacts_list:
         devision_name(meber)      #разделяем фио на составные.
     #pprint(contacts_list)
     #pprint(compere_list(contacts_list))
-
-    len_contact_list = len(contacts_list)    #определяем длинну телефонной книги
-    for element_contacts_list in contacts_list:
-        position = 1
-        while position < len_contact_list:
-            contacts_list[position-1] = compere_list_2(element_contacts_list,contacts_list[position])
-            position += 1
-
+    for member in contacts_list:     #меняем телефоны.
+        aaa = change_telefon_namber(member[5])
+        member[5] = aaa
     pprint(contacts_list)
+
+
+    #pprint(remove_double(contacts_list)) # убираем дублирование , у
+
 
 
 # TODO 2: сохраните получившиеся данные в другой файл
