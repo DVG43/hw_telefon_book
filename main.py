@@ -1,4 +1,4 @@
-from pprint import pprint
+#from pprint import pprint
 import csv
 from data_processing import devision_name
 from data_processing import change_telefon_namber
@@ -31,17 +31,16 @@ if __name__ == '__main__':
         contacts_list = list(rows)
 
     for meber in contacts_list:
-        devision_name(meber)      #разделяем фио на составные.
-    for member in contacts_list:     #меняем телефоны.
+        devision_name(meber)      # разделяем фио на составные.
+    for member in contacts_list:     # меняем телефоны.
         aaa = change_telefon_namber(member[5])
         member[5] = aaa
     contact_list_for_write = remove_double(contacts_list)   # убираем дублирование
-    pprint(contact_list_for_write)
+    #pprint(contact_list_for_write)
 
 
 # TODO 2: сохраните получившиеся данные в другой файл
 # код для записи файла в формате CSV
     with open("phonebook.csv", "w") as f:
         datawriter = csv.writer(f, delimiter=',')
-        # Вместо contacts_list подставьте свой список
         datawriter.writerows(contact_list_for_write)
