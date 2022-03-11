@@ -3,7 +3,7 @@ import csv
 from data_processing import devision_name
 from data_processing import change_telefon_namber
 from data_processing import compere_list_2
-
+from data_processing import remove_duplicates
 # Ваша задача: починить адресную книгу, используя регулярные выражения.
 # Структура данных будет всегда:
 # lastname,firstname,surname,organization,position,phone,email
@@ -20,7 +20,6 @@ def remove_double (contacts_list):
     new_contact_list = []
     for element_contacts_list in contacts_list:
         position = 1
-
         while position < len_contact_list:
             any_element = compere_list_2(element_contacts_list, contacts_list[position])
             position += 1
@@ -32,7 +31,8 @@ def remove_double (contacts_list):
                 pass
             else:
                 new_contact_list.append(any_element)
-    return new_contact_list
+    fifish_contact_list = remove_duplicates(new_contact_list)
+    return fifish_contact_list
 
 
 if __name__ == '__main__':
@@ -42,15 +42,11 @@ if __name__ == '__main__':
 
     for meber in contacts_list:
         devision_name(meber)      #разделяем фио на составные.
-    #pprint(contacts_list)
-    #pprint(compere_list(contacts_list))
     for member in contacts_list:     #меняем телефоны.
         aaa = change_telefon_namber(member[5])
         member[5] = aaa
     pprint(contacts_list)
-
-
-    #pprint(remove_double(contacts_list)) # убираем дублирование , у
+    pprint(remove_double(contacts_list)) # убираем дублирование , у
 
 
 

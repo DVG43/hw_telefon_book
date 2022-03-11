@@ -1,5 +1,5 @@
 import re
-from pprint import pprint
+
 
 
 def devision_name (start_data_1):
@@ -57,5 +57,27 @@ def change_telefon_namber (namber_telefon):
     resalt_3 = re.sub(patern_3,r"+7\2\3\4\5\6",resalt_2 )  #замена 8
     patern_4 = r"(\+7)(\S+)(.+)(доб.)(\s+)(\d+)(.+)"
     resalt_4 = re.sub(patern_4,r"\1\2 \4\6",resalt_3 )  #работа с добавочным номером
-
     return resalt_4
+
+def remove_duplicates (some_list_for_work):
+    list_for_time = some_list_for_work
+    list_after_work = []
+    list_indexes = []
+    for element_worr in some_list_for_work:
+        iterator = 0
+        counter = 0
+        indexes = []
+        while iterator < len(list_for_time):
+            if some_list_for_work [iterator][:2] == element_worr[:2]:
+                counter += 1
+                if counter > 1:
+                    indexes.append(iterator)
+                iterator +=1
+            else:
+                iterator += 1
+        list_indexes += indexes
+    a_set = set(list_indexes)
+    index_for_remuve = list(a_set)
+    for ind in index_for_remuve:
+        some_list_for_work.pop(ind)
+    return some_list_for_work
